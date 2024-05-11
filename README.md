@@ -4,13 +4,6 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+![screenshot-1715445293916](https://github.com/DefenShahria/HotelBooking/assets/101829607/8fd8c451-23b1-4657-a627-cc50de4dd212)
+![screenshot-1715445323648](https://github.com/DefenShahria/HotelBooking/assets/101829607/be62d7b0-c5c6-4f34-ae73-366066fc6eb6)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
