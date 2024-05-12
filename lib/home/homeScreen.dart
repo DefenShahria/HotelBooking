@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jayga/data/color_plate.dart';
 
+import '../data/state_holders/allpostcontroller.dart';
 import 'homeScreenCard.dart';
 import 'homepageSearchbar.dart';
 
@@ -12,6 +14,17 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<AllpostController>().getAllpost();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

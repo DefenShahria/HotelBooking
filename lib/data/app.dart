@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import '../home/homeScreen.dart';
+import 'controllerBinder.dart';
 
 class Jayga extends StatefulWidget {
   const Jayga({super.key});
@@ -12,9 +14,10 @@ class Jayga extends StatefulWidget {
 class _JaygaState extends State<Jayga> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      home: const Homepage(),
+      initialBinding: ControllerBinder(),
     );
   }
 }
