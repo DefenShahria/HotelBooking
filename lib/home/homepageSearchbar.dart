@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jayga/data/color_plate.dart';
 
 class Search_bar extends StatefulWidget {
   const Search_bar({
@@ -8,6 +9,7 @@ class Search_bar extends StatefulWidget {
   State<Search_bar> createState() => _Search_barState();
 }
 class _Search_barState extends State<Search_bar> {
+  DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +37,36 @@ class _Search_barState extends State<Search_bar> {
                   borderRadius: BorderRadius.circular(12.0),
                   borderSide: BorderSide.none,
                 ),
-          suffixIcon: const Icon(Icons.equalizer)
-                )
+            suffixIcon: IconButton(
+              onPressed: () async {
+                final DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2022),
+                  lastDate: DateTime(2200),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData.light().copyWith(
+                        colorScheme: ColorScheme.light(
+                          primary: Appcolor.primarycolor, // Change the primary color of the calendar
+                          onPrimary: Colors.white, // Change the text color on the primary color
+                          surface: Colors.grey, // Change the background color of the calendar
+                        ),
+                        textButtonTheme: TextButtonThemeData(
+                          style: TextButton.styleFrom(
+                            primary: Appcolor.primarycolor, // Change the text color of buttons
+                          ),
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
+                );
+              },
+              icon: Icon(Icons.calendar_month_outlined),
+            )
+
+        )
             ),
     );
   }
