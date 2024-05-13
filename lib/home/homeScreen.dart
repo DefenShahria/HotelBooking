@@ -16,6 +16,9 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
 
 
+
+  List<bool> isPressedList = List.generate(4, (index) => false);
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +27,7 @@ class _HomepageState extends State<Homepage> {
     });
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +50,7 @@ class _HomepageState extends State<Homepage> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
+
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
@@ -106,14 +111,61 @@ class _HomepageState extends State<Homepage> {
                       fontWeight: FontWeight.w400,
                       color: Appcolor.primarycolor),
                 )),
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 2,
-                    itemBuilder:(context,index){
-                  return HomePageCard();
-                })
+                SizedBox(
+                  height: 60,
+                  child: Row(
+                    children: List.generate(
+                      4, (index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              for (int i = 0; i < isPressedList.length; i++) {
+                                isPressedList[i] = (i == index);
+                              }
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              width: 65,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                  bottomRight: Radius.circular(15),
+                                ),
+                                color: isPressedList[index] ? Appcolor.primarycolor : Appcolor.backgroundcolor,
+                              ),
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 4,),
+                                  Icon(Icons.window, color: isPressedList[index] ? Colors.white : Colors.black),
+                                  Text('All', style: TextStyle(color: isPressedList[index] ? Colors.white : Colors.black)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 16,
+                ),
+                GetBuilder<AllpostController>(
+                  builder: (allpostController) {
+                    return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 10,
+                        itemBuilder:(context,index){
+                      return HomePageCard(allpostdata: allpostController.allpostModelData.data![index],);
+                    });
+                  }
+                )
               ],
             ),
           ),
